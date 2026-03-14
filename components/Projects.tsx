@@ -9,6 +9,7 @@ const projects = [
     github: null,
     demo: "https://www.riftbound-companion.net",
     demoLabel: "More details here",
+    hoverImage: "/riftbound.png",
   },
   {
     name: "Project Beta",
@@ -18,6 +19,7 @@ const projects = [
     github: "https://github.com/yourusername/project-beta",
     demo: null,
     demoLabel: "Live Demo",
+    hoverImage: null,
   },
   {
     name: "Project Gamma",
@@ -27,6 +29,7 @@ const projects = [
     github: "https://github.com/yourusername/project-gamma",
     demo: "https://project-gamma.vercel.app",
     demoLabel: "Live Demo",
+    hoverImage: null,
   },
 ]
 
@@ -40,8 +43,14 @@ export default function Projects() {
         {projects.map((project) => (
           <div
             key={project.name}
-            className="bg-gray-900 border border-gray-800 rounded-xl p-6 flex flex-col hover:border-cyan-500/40 transition-colors group"
+            className="relative bg-gray-900 border border-gray-800 rounded-xl p-6 flex flex-col hover:border-cyan-500/40 transition-colors group overflow-hidden"
           >
+            {project.hoverImage && (
+              <div
+                className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 pointer-events-none bg-center bg-contain bg-no-repeat"
+                style={{ backgroundImage: `url(${project.hoverImage})` }}
+              />
+            )}
             <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-cyan-400 transition-colors">
               {project.name}
             </h3>
