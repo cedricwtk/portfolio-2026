@@ -14,7 +14,7 @@ export default function About() {
         <div className="space-y-4">
           <p className="text-gray-300 text-lg leading-relaxed">
             Hey! I&apos;m{" "}
-            <span className="text-cyan-400 font-semibold">Wu Tchan Ki</span>, a
+            <span className="text-cyan-400 font-semibold">Cedric Wu Tchan Ki</span>, a
             Full Stack Developer at Bell Media based in Montreal, Quebec. I love
             building clean, efficient applications and enjoy working across the
             entire stack.
