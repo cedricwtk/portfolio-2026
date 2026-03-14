@@ -134,6 +134,20 @@ export default function Hero() {
       {/* Ripple background */}
       <RippleCanvas />
 
+      {/* Logo watermark */}
+      <motion.div
+        className="absolute inset-0 flex items-center justify-center pointer-events-none"
+        initial={{ opacity: 0, scale: 0.85 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1.8, ease: "easeOut" }}
+      >
+        <img
+          src="/wuTchanKi.svg"
+          alt=""
+          className="w-[520px] h-[520px] opacity-[0.04] select-none"
+        />
+      </motion.div>
+
       {/* Subtle background glow */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl" />
