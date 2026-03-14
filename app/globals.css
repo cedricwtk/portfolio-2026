@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #060b14;
+  --foreground: #e2eef8;
 }
 
 @theme inline {
@@ -10,17 +10,46 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+  /* Gray palette → deep navy-blue tones, pulled from the logo's dark outer body */
+  --color-gray-950: #060b14;
+  --color-gray-900: #0a1220;
+  --color-gray-800: #111d2e;
+  --color-gray-700: #1a2d42;
+  --color-gray-600: #3d6080;
+  --color-gray-500: #527a99;
+  --color-gray-400: #7aa3c0;
+  --color-gray-300: #a8c5d8;
+  --color-gray-200: #c8dde8;
+  --color-gray-100: #e2eef8;
+
+  /* Cyan → exact logo blue (#29abe2) + bright aqua for highlights */
+  --color-cyan-600: #1a82b8;
+  --color-cyan-500: #29abe2;
+  --color-cyan-400: #3dbdee;
+  --color-cyan-300: #00d4ff;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0a1220;
+}
+::-webkit-scrollbar-thumb {
+  background: #1a2d42;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #29abe2;
 }
