@@ -24,16 +24,6 @@ export default function About() {
             I&apos;m not at my day job, I&apos;m usually working on side
             projects or exploring new technologies.
           </p>
-          <div className="flex flex-wrap gap-3 pt-2">
-            {["TypeScript", "React", "Next.js", "Python", "Node.js", "PostgreSQL"].map((skill) => (
-              <span
-                key={skill}
-                className="text-xs bg-gray-800 border border-gray-700 text-cyan-400 px-2 py-1 rounded font-mono"
-              >
-                {skill}
-              </span>
-            ))}
-          </div>
         </div>
       </div>
     </SectionWrapper>
