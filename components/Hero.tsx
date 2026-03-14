@@ -50,28 +50,31 @@ function RippleCanvas() {
       const x = Math.random() * canvas.width
       const y = Math.random() * canvas.height
       const now = performance.now()
-      const maxRadius = 60 + Math.random() * 80
+      const maxRadius = 80 + Math.random() * 100
 
       drops.push({
         x, y,
         spawnedAt: now,
         rings: [
-          { x, y, radius: 0, maxRadius, opacity: 0, delay: 0,   born: now },
+          { x, y, radius: 0, maxRadius,               opacity: 0, delay: 0,   born: now },
           { x, y, radius: 0, maxRadius: maxRadius * 0.65, opacity: 0, delay: 180, born: now },
+          { x, y, radius: 0, maxRadius: maxRadius * 0.35, opacity: 0, delay: 80,  born: now },
         ],
       })
     }
 
-    // Spawn drops on a random interval
+    // Spawn a burst of 2–4 drops at once, then schedule the next burst
     let spawnTimer: ReturnType<typeof setTimeout>
     const scheduleSpawn = () => {
-      const interval = 1200 + Math.random() * 1800
+      const interval = 600 + Math.random() * 800
       spawnTimer = setTimeout(() => {
-        spawnDrop()
+        const count = 2 + Math.floor(Math.random() * 3)
+        for (let i = 0; i < count; i++) spawnDrop()
         scheduleSpawn()
       }, interval)
     }
-    spawnDrop()
+    const count = 2 + Math.floor(Math.random() * 3)
+    for (let i = 0; i < count; i++) spawnDrop()
     scheduleSpawn()
 
     const draw = (now: number) => {
