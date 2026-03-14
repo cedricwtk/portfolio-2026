@@ -1,10 +1,6 @@
-"use client"
-
-import { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
 import SectionWrapper from "./SectionWrapper"
 
-const socialLinks = [
+const contactItems = [
   {
     icon: (
       <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
@@ -13,6 +9,24 @@ const socialLinks = [
     ),
     label: "Email me",
     href: "mailto:cedric@wutchanki.com",
+  },
+  {
+    icon: (
+      <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
+        <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.47 11.47 0 003.58.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.58a1 1 0 01-.24 1.01l-2.21 2.2z"/>
+      </svg>
+    ),
+    label: "+1 514 572 7372",
+    href: "tel:+15145727372",
+  },
+  {
+    icon: (
+      <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
+        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z"/>
+      </svg>
+    ),
+    label: "Ottawa Vanier, Ontario, Canada",
+    href: null,
   },
   {
     icon: (
@@ -34,157 +48,64 @@ const socialLinks = [
   },
 ]
 
-type ToastType = "success" | "error"
-
-function Toast({ type, onClose }: { type: ToastType; onClose: () => void }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: 40 }}
-      className={`fixed bottom-6 right-6 z-50 flex items-center gap-3 px-5 py-4 rounded-xl shadow-lg border text-sm font-medium ${
-        type === "success"
-          ? "bg-gray-900 border-cyan-500/40 text-white"
-          : "bg-gray-900 border-red-500/40 text-white"
-      }`}
-    >
-      {type === "success" ? (
-        <span className="text-cyan-400 text-lg">✓</span>
-      ) : (
-        <span className="text-red-400 text-lg">✕</span>
-      )}
-      {type === "success"
-        ? "Message sent! I'll get back to you soon."
-        : "Something went wrong. Please try again."}
-      <button onClick={onClose} className="ml-2 text-gray-500 hover:text-gray-300 transition-colors">
-        ✕
-      </button>
-    </motion.div>
-  )
-}
+const availability = [
+  { day: "Mon – Fri", hours: "6:00 PM – 10:00 PM EST" },
+  { day: "Weekends", hours: "9:00 AM – 5:00 PM EST" },
+]
 
 export default function Contact() {
-  const [status, setStatus] = useState<"idle" | "loading">("idle")
-  const [toast, setToast] = useState<ToastType | null>(null)
-
-  function showToast(type: ToastType) {
-    setToast(type)
-    setTimeout(() => setToast(null), 5000)
-  }
-
-  async function handleSubmit(e: React.SyntheticEvent<HTMLFormElement>) {
-    e.preventDefault()
-    setStatus("loading")
-    const form = e.currentTarget
-    const data = Object.fromEntries(new FormData(form))
-
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      })
-      if (res.ok) {
-        form.reset()
-        showToast("success")
-      } else {
-        showToast("error")
-      }
-    } catch {
-      showToast("error")
-    } finally {
-      setStatus("idle")
-    }
-  }
-
   return (
     <SectionWrapper id="contact">
-      <h2 className="text-3xl font-bold text-white mb-2">Contact Me</h2>
+      <h2 className="text-3xl font-bold text-white mb-2">Contact</h2>
       <div className="w-12 h-1 bg-cyan-500 mb-10" />
 
       <div className="grid md:grid-cols-2 gap-12">
-        {/* Left column */}
-        <div>
-          <p className="text-gray-400 leading-relaxed mb-8">
-            Have a question or just want to say hi? Fill out the form and
-            I&apos;ll get back to you.
-          </p>
 
-          <div className="space-y-4">
-            {socialLinks.map((link) => (
+        {/* Contact info */}
+        <div className="space-y-4">
+          <p className="text-gray-400 leading-relaxed mb-6">
+            Have a question or just want to say hi? Here&apos;s where you can find me.
+          </p>
+          {contactItems.map((item) =>
+            item.href ? (
               <a
-                key={link.href}
-                href={link.href}
-                target={link.href.startsWith("mailto") ? undefined : "_blank"}
+                key={item.label}
+                href={item.href}
+                target={item.href.startsWith("http") ? "_blank" : undefined}
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors group"
               >
-                <span className="text-cyan-500">{link.icon}</span>
-                <span className="text-sm group-hover:text-cyan-400 transition-colors">
-                  {link.label}
-                </span>
+                <span className="text-cyan-500">{item.icon}</span>
+                <span className="text-sm group-hover:text-cyan-400 transition-colors">{item.label}</span>
               </a>
+            ) : (
+              <div key={item.label} className="flex items-center gap-3 text-gray-400">
+                <span className="text-cyan-500">{item.icon}</span>
+                <span className="text-sm">{item.label}</span>
+              </div>
+            )
+          )}
+        </div>
+
+        {/* Availability */}
+        <div>
+          <h3 className="text-white font-semibold mb-4 flex items-center gap-2">
+            <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 text-cyan-500">
+              <path d="M12 2a10 10 0 110 20A10 10 0 0112 2zm0 2a8 8 0 100 16A8 8 0 0012 4zm.5 3v5.25l4.5 2.67-.75 1.23L11 13V7h1.5z"/>
+            </svg>
+            Availability
+          </h3>
+          <div className="space-y-3">
+            {availability.map((slot) => (
+              <div key={slot.day} className="flex items-center justify-between bg-gray-900 border border-gray-800 rounded-xl px-4 py-3">
+                <span className="text-gray-400 text-sm">{slot.day}</span>
+                <span className="text-cyan-400 text-sm font-mono">{slot.hours}</span>
+              </div>
             ))}
           </div>
         </div>
 
-        {/* Right column — form */}
-        <form onSubmit={handleSubmit} className="space-y-5">
-          <div>
-            <label className="block text-sm text-gray-400 mb-1.5" htmlFor="name">
-              Name
-            </label>
-            <input
-              id="name"
-              type="text"
-              name="name"
-              required
-              className="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-cyan-500 transition-colors"
-              placeholder="Your name"
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm text-gray-400 mb-1.5" htmlFor="email">
-              Email
-            </label>
-            <input
-              id="email"
-              type="email"
-              name="email"
-              required
-              className="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-cyan-500 transition-colors"
-              placeholder="your@email.com"
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm text-gray-400 mb-1.5" htmlFor="message">
-              Message
-            </label>
-            <textarea
-              id="message"
-              name="message"
-              required
-              rows={5}
-              className="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-cyan-500 transition-colors resize-none"
-              placeholder="What's on your mind?"
-            />
-          </div>
-
-          <button
-            type="submit"
-            disabled={status === "loading"}
-            className="w-full py-3 bg-cyan-500 text-gray-950 font-semibold rounded-lg hover:bg-cyan-400 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            {status === "loading" ? "Sending…" : "Send Message"}
-          </button>
-        </form>
       </div>
-
-      <AnimatePresence>
-        {toast && <Toast type={toast} onClose={() => setToast(null)} />}
-      </AnimatePresence>
     </SectionWrapper>
   )
 }

@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { motion, AnimatePresence } from "framer-motion"
 
 const navLinks = [
   { label: "About", href: "#about" },
@@ -11,6 +12,46 @@ const navLinks = [
   { label: "Work With Me", href: "#hire" },
   { label: "Contact", href: "#contact" },
 ]
+
+const particles = [
+  { x: -18, y: -14 }, { x: 18, y: -14 },
+  { x: -22, y: 0  }, { x: 22, y: 0   },
+  { x: -14, y: 14 }, { x: 14, y: 14  },
+  { x: 0,   y: -18}, { x: 0,  y: 18  },
+]
+
+function LogoText() {
+  const [hovered, setHovered] = useState(false)
+
+  return (
+    <span
+      className="relative hidden sm:block"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      <motion.span
+        className="font-bold text-xl tracking-tight text-cyan-500 block"
+        animate={hovered ? { scale: 1.06 } : { scale: 1 }}
+        transition={{ type: "spring", stiffness: 400, damping: 20 }}
+      >
+        Wu Tchan Ki
+      </motion.span>
+
+      <AnimatePresence>
+        {hovered && particles.map((p, i) => (
+          <motion.span
+            key={i}
+            className="absolute left-1/2 top-1/2 w-1 h-1 rounded-full bg-cyan-400 pointer-events-none"
+            initial={{ x: 0, y: 0, opacity: 1, scale: 1 }}
+            animate={{ x: p.x, y: p.y, opacity: 0, scale: 0 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5, delay: i * 0.03, ease: "easeOut" }}
+          />
+        ))}
+      </AnimatePresence>
+    </span>
+  )
+}
 
 export default function Navbar() {
   const [activeSection, setActiveSection] = useState("")
@@ -35,9 +76,9 @@ export default function Navbar() {
   return (
     <nav className="fixed top-0 w-full z-50 bg-gray-950/90 backdrop-blur-md border-b border-gray-800">
       <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-        <a href="#" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+        <a href="#" className="flex items-center gap-2">
           <img src="/wuTchanKi.svg" alt="Wu Tchan Ki" className="w-9 h-9 rounded-full" />
-          <span className="text-white font-bold text-xl tracking-tight hidden sm:block">Wu Tchan Ki</span>
+          <LogoText />
         </a>
 
         {/* Desktop nav */}

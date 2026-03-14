@@ -67,7 +67,7 @@ export default function Hire() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...data, message: `[Business Inquiry]\n\n${data.message}` }),
+        body: JSON.stringify({ ...data, message: `[Business Inquiry]\nBudget: ${data.budget}\n\n${data.message}` }),
       })
       if (res.ok) {
         form.reset()
@@ -90,7 +90,7 @@ export default function Hire() {
           <div className="w-12 h-1 bg-cyan-500" />
         </div>
         <span className="inline-flex items-center gap-2 text-xs font-mono text-cyan-400 bg-cyan-500/10 border border-cyan-500/20 px-3 py-1.5 rounded-full self-start md:self-auto">
-          <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+          <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
           Available for projects
         </span>
       </div>
@@ -139,6 +139,22 @@ export default function Hire() {
               className="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-cyan-500 transition-colors"
               placeholder="your@email.com"
             />
+          </div>
+          <div>
+            <label className="block text-sm text-gray-400 mb-1.5" htmlFor="hire-budget">Budget</label>
+            <select
+              id="hire-budget"
+              name="budget"
+              required
+              className="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-cyan-500 transition-colors"
+            >
+              <option value="" disabled selected>Select a range</option>
+              <option value="Under $500">Under $500</option>
+              <option value="$500 – $1,500">$500 – $1,500</option>
+              <option value="$1,500 – $5,000">$1,500 – $5,000</option>
+              <option value="$5,000+">$5,000+</option>
+              <option value="To discuss">To discuss</option>
+            </select>
           </div>
           <div>
             <label className="block text-sm text-gray-400 mb-1.5" htmlFor="hire-message">Tell me about your project</label>
