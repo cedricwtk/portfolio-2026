@@ -95,13 +95,13 @@ function RippleCanvas() {
           ring.radius = ring.maxRadius * progress
           // Opacity: fade in quickly, then slowly fade out
           ring.opacity = progress < 0.1
-            ? progress / 0.1 * 0.18
-            : 0.18 * (1 - (progress - 0.1) / 0.9)
+            ? progress / 0.1 * 0.35
+            : 0.35 * (1 - (progress - 0.1) / 0.9)
 
           ctx.beginPath()
           ctx.arc(ring.x, ring.y, ring.radius, 0, Math.PI * 2)
           ctx.strokeStyle = `rgba(41, 171, 226, ${ring.opacity})`
-          ctx.lineWidth = 1.2
+          ctx.lineWidth = 1.8
           ctx.stroke()
         }
 
