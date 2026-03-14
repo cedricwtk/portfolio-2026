@@ -2,23 +2,53 @@ import SectionWrapper from "./SectionWrapper"
 
 const jobs = [
   {
-    company: "Example Corp",
-    role: "Software Engineer",
-    period: "Jan 2024 – Present",
+    company: "Bell Media",
+    role: "Full Stack Developer",
+    period: "September 2022 – Present",
+    location: "Montreal, Quebec, Canada",
+    bullets: [],
+  },
+  {
+    company: "Carrefour Providence",
+    role: "Food Aid Volunteer",
+    period: "May 2012 – Present",
+    location: "Montreal, Canada",
     bullets: [
-      "Built and maintained features for a high-traffic web application serving 100k+ users",
-      "Collaborated with cross-functional teams to ship product requirements on schedule",
-      "Improved API response time by 30% through caching strategies and query optimization",
+      "Working in a residence for elderly people run by the Sisters of Providence, staying close to the community and strengthening teamwork skills.",
+      "Working in a care facility sharpened attention to detail and continuous thoroughness.",
     ],
   },
   {
-    company: "Startup Inc.",
-    role: "Frontend Developer Intern",
-    period: "Jun 2023 – Dec 2023",
+    company: "Université du Québec à Montréal",
+    role: "Developer",
+    period: "January 2022 – August 2022",
+    location: "Montreal, Quebec, Canada",
     bullets: [
-      "Developed React components for the company's main SaaS dashboard",
-      "Worked closely with designers to implement pixel-perfect, accessible UIs",
-      "Wrote unit and integration tests using Jest and React Testing Library",
+      "React, Node.js, Redux, Docker, PostgreSQL, JIRA, DBeaver.",
+    ],
+  },
+  {
+    company: "Federal Government of Canada",
+    role: "Software Developer & Data Administrator",
+    period: "September 2017 – June 2018",
+    location: "Montreal, Canada",
+    bullets: [
+      "Developed a web scraping application in Ruby on Rails from scratch.",
+      "Maintained and updated the database.",
+      "Collaborated with the team on decisions regarding processes relevant to problems encountered.",
+      "Tech stack: Linux, Windows, Ruby on Rails, PHP, SQL, T-SQL.",
+    ],
+  },
+  {
+    company: "XLCINQ",
+    role: "Web Development Intern",
+    period: "January 2017 – May 2017",
+    location: "Montreal, Canada",
+    bullets: [
+      "Maintained and developed client websites (front-end and back-end).",
+      "Developed custom modules and features.",
+      "Managed projects using continuous integration practices.",
+      "Tech stack: Linux, Windows, Ruby on Rails, PHP, Shopify, Magento, HTML, CSS, JavaScript.",
     ],
   },
 ]
@@ -37,7 +67,8 @@ export default function WorkHistory() {
 
             <span className="text-xs text-cyan-400 font-mono tracking-wider">{job.period}</span>
             <h3 className="text-xl font-semibold text-white mt-1">{job.role}</h3>
-            <p className="text-gray-400 mb-4">{job.company}</p>
+            <p className="text-gray-400">{job.company}</p>
+            <p className="text-gray-600 text-xs mb-4">{job.location}</p>
             <ul className="space-y-2">
               {job.bullets.map((bullet, j) => (
                 <li key={j} className="text-gray-400 text-sm flex gap-2 leading-relaxed">

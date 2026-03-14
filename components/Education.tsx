@@ -2,16 +2,16 @@ import SectionWrapper from "./SectionWrapper"
 
 const education = [
   {
-    school: "University of Example",
-    degree: "B.S. in Computer Science",
-    years: "2020 – 2024",
-    notes: "GPA: 3.8 / 4.0 · Dean's List · Relevant coursework: Data Structures, Algorithms, Databases",
+    school: "Université du Québec à Montréal",
+    degree: "Bachelor's degree, Computer Science",
+    years: "2018 – 2021",
+    notes: null,
   },
   {
-    school: "Example High School",
-    degree: "High School Diploma",
-    years: "2016 – 2020",
-    notes: "Honors student · AP Computer Science · Math team captain",
+    school: "Collège de Bois-de-Boulogne",
+    degree: "Technical DEC in Programming, Information Technology",
+    years: "September 2014 – May 2017",
+    notes: null,
   },
 ]
 

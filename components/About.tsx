@@ -15,14 +15,15 @@ export default function About() {
           <p className="text-gray-300 text-lg leading-relaxed">
             Hey! I&apos;m{" "}
             <span className="text-cyan-400 font-semibold">Wu Tchan Ki</span>, a
-            passionate software developer who loves building clean and efficient
-            applications. I enjoy working across the full stack and am always
-            eager to pick up new technologies.
+            Full Stack Developer at Bell Media based in Montreal, Quebec. I love
+            building clean, efficient applications and enjoy working across the
+            entire stack.
           </p>
           <p className="text-gray-400 leading-relaxed">
-            When I&apos;m not coding, you can find me exploring the latest tech
-            trends, gaming, or tinkering on personal projects. I&apos;m currently
-            open to new opportunities — feel free to reach out!
+            With a background spanning web development, data management, and
+            volunteer work in my community, I bring both technical depth and a
+            people-first mindset to everything I build. Always eager to take on
+            new challenges — feel free to reach out!
           </p>
           <div className="flex flex-wrap gap-3 pt-2">
             {["TypeScript", "React", "Next.js", "Python", "Node.js", "PostgreSQL"].map((skill) => (

@@ -26,7 +26,7 @@ export default function Hero() {
         </motion.h1>
 
         <motion.p {...fadeUp(0.2)} className="text-xl md:text-2xl text-gray-400 mb-4">
-          Software Engineer
+          Full Stack Developer
         </motion.p>
 
         <motion.p {...fadeUp(0.3)} className="text-gray-500 max-w-lg mx-auto mb-10 leading-relaxed">
