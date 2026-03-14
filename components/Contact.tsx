@@ -106,8 +106,8 @@ export default function Contact() {
         {/* Left column */}
         <div>
           <p className="text-gray-400 leading-relaxed mb-8">
-            Have a project in mind, a question, or just want to say hi? Fill
-            out the form and I&apos;ll get back to you as soon as I can.
+            Have a question or just want to say hi? Fill out the form and
+            I&apos;ll get back to you.
           </p>
 
           <div className="space-y-4">

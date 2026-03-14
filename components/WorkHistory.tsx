@@ -7,7 +7,7 @@ const jobs = [
     period: "September 2022 – Present",
     location: "Montreal, Quebec, Canada",
     bullets: [],
-    tech: [],
+    tech: ["MongoDB", "Java", "Spring Boot", "New Relic", "Docker", "Kraken", "JIRA", "GitLab"],
   },
   {
     company: "Université du Québec à Montréal",

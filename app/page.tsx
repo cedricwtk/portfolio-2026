@@ -5,6 +5,7 @@ import Education from "@/components/Education"
 import WorkHistory from "@/components/WorkHistory"
 import Projects from "@/components/Projects"
 import Hobbies from "@/components/Hobbies"
+import Hire from "@/components/Hire"
 import Contact from "@/components/Contact"
 
 export default function Home() {
@@ -17,6 +18,7 @@ export default function Home() {
       <WorkHistory />
       <Projects />
       <Hobbies />
+      <Hire />
       <Contact />
       <footer className="border-t border-gray-800 text-sm py-10">
         <div className="max-w-6xl mx-auto px-6 flex flex-col items-center gap-6">

@@ -30,7 +30,7 @@ export default function Hero() {
         </motion.p>
 
         <motion.p {...fadeUp(0.3)} className="text-gray-500 max-w-lg mx-auto mb-10 leading-relaxed">
-          I build things for the web — crafting clean, fast, and meaningful digital experiences.
+          I build things for the web — clean, fast, and meaningful digital experiences.
         </motion.p>
 
         <motion.div

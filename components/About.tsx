@@ -20,10 +20,9 @@ export default function About() {
             entire stack.
           </p>
           <p className="text-gray-400 leading-relaxed">
-            With a background spanning web development, data management, and
-            volunteer work in my community, I bring both technical depth and a
-            people-first mindset to everything I build. Always eager to take on
-            new challenges — feel free to reach out!
+            I enjoy writing clean code and shipping products that work. When
+            I&apos;m not at my day job, I&apos;m usually working on side
+            projects or exploring new technologies.
           </p>
           <div className="flex flex-wrap gap-3 pt-2">
             {["TypeScript", "React", "Next.js", "Python", "Node.js", "PostgreSQL"].map((skill) => (
