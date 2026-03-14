@@ -145,7 +145,7 @@ export default function Hero() {
         </motion.p>
 
         <motion.h1 {...fadeUp(0.1)} className="text-5xl md:text-7xl font-bold text-white mb-4 leading-tight">
-          Wu Tchan Ki
+          Cedric Wu Tchan Ki
         </motion.h1>
 
         <motion.p {...fadeUp(0.2)} className="text-xl md:text-2xl text-gray-400 mb-4">

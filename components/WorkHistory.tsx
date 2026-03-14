@@ -21,7 +21,7 @@ const jobs = [
     company: "Federal Government of Canada",
     role: "Software Developer & Data Analyst",
     period: "September 2017 – June 2018",
-    location: "Montreal, Canada",
+    location: "Montreal, Quebec, Canada",
     bullets: [
       "Developed a web scraping application in Ruby on Rails from scratch.",
       "Maintained and updated the database.",
@@ -33,7 +33,7 @@ const jobs = [
     company: "XLCINQ",
     role: "Web Development Intern",
     period: "January 2017 – May 2017",
-    location: "Montreal, Canada",
+    location: "Montreal, Quebec, Canada",
     bullets: [
       "Maintained and developed client websites (front-end and back-end).",
       "Developed custom modules and features.",
