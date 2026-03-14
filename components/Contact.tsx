@@ -1,11 +1,8 @@
 "use client"
 
 import { useState } from "react"
+import { motion, AnimatePresence } from "framer-motion"
 import SectionWrapper from "./SectionWrapper"
-
-// TODO: Replace YOUR_FORM_ID with your Formspree form ID.
-// Sign up free at https://formspree.io, create a form, and paste the ID here.
-const FORMSPREE_ENDPOINT = "https://formspree.io/f/YOUR_FORM_ID"
 
 const socialLinks = [
   {
@@ -37,29 +34,66 @@ const socialLinks = [
   },
 ]
 
-export default function Contact() {
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
+type ToastType = "success" | "error"
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+function Toast({ type, onClose }: { type: ToastType; onClose: () => void }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 40 }}
+      className={`fixed bottom-6 right-6 z-50 flex items-center gap-3 px-5 py-4 rounded-xl shadow-lg border text-sm font-medium ${
+        type === "success"
+          ? "bg-gray-900 border-cyan-500/40 text-white"
+          : "bg-gray-900 border-red-500/40 text-white"
+      }`}
+    >
+      {type === "success" ? (
+        <span className="text-cyan-400 text-lg">✓</span>
+      ) : (
+        <span className="text-red-400 text-lg">✕</span>
+      )}
+      {type === "success"
+        ? "Message sent! I'll get back to you soon."
+        : "Something went wrong. Please try again."}
+      <button onClick={onClose} className="ml-2 text-gray-500 hover:text-gray-300 transition-colors">
+        ✕
+      </button>
+    </motion.div>
+  )
+}
+
+export default function Contact() {
+  const [status, setStatus] = useState<"idle" | "loading">("idle")
+  const [toast, setToast] = useState<ToastType | null>(null)
+
+  function showToast(type: ToastType) {
+    setToast(type)
+    setTimeout(() => setToast(null), 5000)
+  }
+
+  async function handleSubmit(e: React.SyntheticEvent<HTMLFormElement>) {
     e.preventDefault()
     setStatus("loading")
     const form = e.currentTarget
-    const data = new FormData(form)
+    const data = Object.fromEntries(new FormData(form))
 
     try {
-      const res = await fetch(FORMSPREE_ENDPOINT, {
+      const res = await fetch("/api/contact", {
         method: "POST",
-        body: data,
-        headers: { Accept: "application/json" },
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
       })
       if (res.ok) {
-        setStatus("success")
         form.reset()
+        showToast("success")
       } else {
-        setStatus("error")
+        showToast("error")
       }
     } catch {
-      setStatus("error")
+      showToast("error")
+    } finally {
+      setStatus("idle")
     }
   }
 
@@ -134,7 +168,7 @@ export default function Contact() {
               required
               rows={5}
               className="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-cyan-500 transition-colors resize-none"
-              placeholder="What&apos;s on your mind?"
+              placeholder="What's on your mind?"
             />
           </div>
 
@@ -145,19 +179,12 @@ export default function Contact() {
           >
             {status === "loading" ? "Sending…" : "Send Message"}
           </button>
-
-          {status === "success" && (
-            <p className="text-green-400 text-sm text-center">
-              ✓ Message sent! I&apos;ll be in touch soon.
-            </p>
-          )}
-          {status === "error" && (
-            <p className="text-red-400 text-sm text-center">
-              Something went wrong. Please try again or email me directly.
-            </p>
-          )}
         </form>
       </div>
+
+      <AnimatePresence>
+        {toast && <Toast type={toast} onClose={() => setToast(null)} />}
+      </AnimatePresence>
     </SectionWrapper>
   )
 }
