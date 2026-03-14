@@ -6,6 +6,7 @@ const jobs = [
     role: "Full Stack Developer",
     period: "September 2022 – Present",
     location: "Montreal, Quebec, Canada",
+    logo: "/Bell.png",
     bullets: [],
     tech: ["MongoDB", "Java", "Spring Boot", "New Relic", "Docker", "Kraken", "JIRA", "GitLab"],
   },
@@ -14,6 +15,7 @@ const jobs = [
     role: "Developer",
     period: "January 2022 – August 2022",
     location: "Montreal, Quebec, Canada",
+    logo: "/uqam.png",
     bullets: [],
     tech: ["React", "Node.js", "Redux", "Docker", "PostgreSQL", "JIRA", "DBeaver"],
   },
@@ -22,6 +24,7 @@ const jobs = [
     role: "Software Developer & Data Analyst",
     period: "September 2017 – June 2018",
     location: "Montreal, Canada",
+    logo: "/government.png",
     bullets: [
       "Developed a web scraping application in Ruby on Rails from scratch.",
       "Maintained and updated the database.",
@@ -34,6 +37,7 @@ const jobs = [
     role: "Web Development Intern",
     period: "January 2017 – May 2017",
     location: "Montreal, Canada",
+    logo: null,
     bullets: [
       "Maintained and developed client websites (front-end and back-end).",
       "Developed custom modules and features.",
@@ -55,7 +59,12 @@ export default function WorkHistory() {
             {/* Timeline dot */}
             <div className="absolute -left-[41px] top-1.5 w-4 h-4 rounded-full bg-cyan-500 border-2 border-gray-950" />
 
-            <span className="text-xs text-cyan-400 font-mono tracking-wider">{job.period}</span>
+            <div className="flex items-start justify-between gap-4 mb-1">
+              <span className="text-xs text-cyan-400 font-mono tracking-wider">{job.period}</span>
+              {job.logo && (
+                <img src={job.logo} alt={job.company} className="h-8 w-auto object-contain opacity-80" />
+              )}
+            </div>
             <h3 className="text-xl font-semibold text-white mt-1">{job.role}</h3>
             <p className="text-gray-400">{job.company}</p>
             <p className="text-gray-600 text-xs mb-4">{job.location}</p>
