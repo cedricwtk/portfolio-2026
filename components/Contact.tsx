@@ -50,7 +50,7 @@ const contactItems = [
 
 const availability = [
   { day: "Mon – Fri", hours: "6:00 PM – 10:00 PM EST" },
-  { day: "Weekends", hours: "9:00 AM – 5:00 PM EST" },
+  { day: "Sat – Sun", hours: "9:00 AM – 5:00 PM EST" },
 ]
 
 export default function Contact() {

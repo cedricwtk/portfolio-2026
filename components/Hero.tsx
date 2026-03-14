@@ -50,7 +50,7 @@ function RippleCanvas() {
       const x = Math.random() * canvas.width
       const y = Math.random() * canvas.height
       const now = performance.now()
-      const maxRadius = 80 + Math.random() * 100
+      const maxRadius = 45 + Math.random() * 55
 
       drops.push({
         x, y,
@@ -66,14 +66,14 @@ function RippleCanvas() {
     // Spawn a burst of 2–4 drops at once, then schedule the next burst
     let spawnTimer: ReturnType<typeof setTimeout>
     const scheduleSpawn = () => {
-      const interval = 600 + Math.random() * 800
+      const interval = 1000 + Math.random() * 1200
       spawnTimer = setTimeout(() => {
-        const count = 2 + Math.floor(Math.random() * 3)
+        const count = 1 + Math.floor(Math.random() * 2)
         for (let i = 0; i < count; i++) spawnDrop()
         scheduleSpawn()
       }, interval)
     }
-    const count = 2 + Math.floor(Math.random() * 3)
+    const count = 1 + Math.floor(Math.random() * 2)
     for (let i = 0; i < count; i++) spawnDrop()
     scheduleSpawn()
 
