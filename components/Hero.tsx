@@ -144,7 +144,7 @@ export default function Hero() {
         <img
           src="/wuTchanKi.svg"
           alt=""
-          className="w-[520px] h-[520px] opacity-[0.04] select-none"
+          className="w-[780px] h-[780px] opacity-[0.04] select-none"
         />
       </motion.div>
 
