@@ -10,18 +10,18 @@ const FORMSPREE_ENDPOINT = "https://formspree.io/f/YOUR_FORM_ID"
 const socialLinks = [
   {
     icon: "✉",
-    label: "your@email.com",
-    href: "mailto:your@email.com",
+    label: "cedric@wutchanki.com",
+    href: "mailto:cedric@wutchanki.com",
   },
   {
     icon: "◈",
-    label: "github.com/yourusername",
-    href: "https://github.com/yourusername",
+    label: "github.com/cedricwtk",
+    href: "https://github.com/cedricwtk",
   },
   {
     icon: "◈",
-    label: "linkedin.com/in/yourusername",
-    href: "https://linkedin.com/in/yourusername",
+    label: "linkedin.com/in/wutchankicedric",
+    href: "https://linkedin.com/in/wutchankicedric",
   },
 ]
 

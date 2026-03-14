@@ -19,7 +19,7 @@ export default function Home() {
       <Hobbies />
       <Contact />
       <footer className="border-t border-gray-800 text-center text-gray-600 text-sm py-8">
-        <p>© {new Date().getFullYear()} Wu Tchan Ki · Built with Next.js & Tailwind CSS</p>
+        <p>© {new Date().getFullYear()} Wu Tchan Ki</p>
       </footer>
     </main>
   )
