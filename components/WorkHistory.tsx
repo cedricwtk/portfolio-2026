@@ -9,16 +9,6 @@ const jobs = [
     bullets: [],
   },
   {
-    company: "Carrefour Providence",
-    role: "Food Aid Volunteer",
-    period: "May 2012 – Present",
-    location: "Montreal, Canada",
-    bullets: [
-      "Working in a residence for elderly people run by the Sisters of Providence, staying close to the community and strengthening teamwork skills.",
-      "Working in a care facility sharpened attention to detail and continuous thoroughness.",
-    ],
-  },
-  {
     company: "Université du Québec à Montréal",
     role: "Developer",
     period: "January 2022 – August 2022",
@@ -29,7 +19,7 @@ const jobs = [
   },
   {
     company: "Federal Government of Canada",
-    role: "Software Developer & Data Administrator",
+    role: "Software Developer & Data Analyst",
     period: "September 2017 – June 2018",
     location: "Montreal, Canada",
     bullets: [

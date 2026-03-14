@@ -29,7 +29,7 @@ export default function About() {
             {["TypeScript", "React", "Next.js", "Python", "Node.js", "PostgreSQL"].map((skill) => (
               <span
                 key={skill}
-                className="text-xs bg-gray-800 border border-gray-700 text-cyan-400 px-3 py-1 rounded-full"
+                className="text-xs bg-gray-800 border border-gray-700 text-cyan-400 px-2 py-1 rounded font-mono"
               >
                 {skill}
               </span>
