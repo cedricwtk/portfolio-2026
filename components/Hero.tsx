@@ -1,5 +1,6 @@
 "use client"
 
+import { useEffect, useRef } from "react"
 import { motion } from "framer-motion"
 
 const fadeUp = (delay: number) => ({
@@ -8,9 +9,128 @@ const fadeUp = (delay: number) => ({
   transition: { duration: 0.5, delay, ease: "easeOut" as const },
 })
 
+interface Ring {
+  x: number
+  y: number
+  radius: number
+  maxRadius: number
+  opacity: number
+  delay: number
+  born: number
+}
+
+interface Drop {
+  x: number
+  y: number
+  spawnedAt: number
+  rings: Ring[]
+}
+
+function RippleCanvas() {
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+
+  useEffect(() => {
+    const canvas = canvasRef.current
+    if (!canvas) return
+    const ctx = canvas.getContext("2d")
+    if (!ctx) return
+
+    let animId: number
+    const drops: Drop[] = []
+
+    const resize = () => {
+      canvas.width = canvas.offsetWidth
+      canvas.height = canvas.offsetHeight
+    }
+    resize()
+    window.addEventListener("resize", resize)
+
+    // Spawn a new drop at a random position
+    const spawnDrop = () => {
+      const x = Math.random() * canvas.width
+      const y = Math.random() * canvas.height
+      const now = performance.now()
+      const maxRadius = 60 + Math.random() * 80
+
+      drops.push({
+        x, y,
+        spawnedAt: now,
+        rings: [
+          { x, y, radius: 0, maxRadius, opacity: 0, delay: 0,   born: now },
+          { x, y, radius: 0, maxRadius: maxRadius * 0.65, opacity: 0, delay: 180, born: now },
+        ],
+      })
+    }
+
+    // Spawn drops on a random interval
+    let spawnTimer: ReturnType<typeof setTimeout>
+    const scheduleSpawn = () => {
+      const interval = 1200 + Math.random() * 1800
+      spawnTimer = setTimeout(() => {
+        spawnDrop()
+        scheduleSpawn()
+      }, interval)
+    }
+    spawnDrop()
+    scheduleSpawn()
+
+    const draw = (now: number) => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
+
+      for (let d = drops.length - 1; d >= 0; d--) {
+        const drop = drops[d]
+        let allDone = true
+
+        for (const ring of drop.rings) {
+          const elapsed = now - ring.born - ring.delay
+          if (elapsed < 0) { allDone = false; continue }
+
+          const progress = elapsed / 1800  // 1.8s lifetime
+          if (progress >= 1) continue
+
+          allDone = false
+          ring.radius = ring.maxRadius * progress
+          // Opacity: fade in quickly, then slowly fade out
+          ring.opacity = progress < 0.1
+            ? progress / 0.1 * 0.18
+            : 0.18 * (1 - (progress - 0.1) / 0.9)
+
+          ctx.beginPath()
+          ctx.arc(ring.x, ring.y, ring.radius, 0, Math.PI * 2)
+          ctx.strokeStyle = `rgba(41, 171, 226, ${ring.opacity})`
+          ctx.lineWidth = 1.2
+          ctx.stroke()
+        }
+
+        if (allDone) drops.splice(d, 1)
+      }
+
+      animId = requestAnimationFrame(draw)
+    }
+
+    animId = requestAnimationFrame(draw)
+
+    return () => {
+      cancelAnimationFrame(animId)
+      clearTimeout(spawnTimer)
+      window.removeEventListener("resize", resize)
+    }
+  }, [])
+
+  return (
+    <canvas
+      ref={canvasRef}
+      className="absolute inset-0 w-full h-full pointer-events-none"
+    />
+  )
+}
+
 export default function Hero() {
   return (
     <section className="min-h-screen flex items-center justify-center px-6 text-center relative overflow-hidden">
+      {/* Ripple background */}
+      <RippleCanvas />
+
       {/* Subtle background glow */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl" />
