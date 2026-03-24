@@ -16,7 +16,7 @@ const projects = [
     description:
       "A personal life companion Android app featuring calorie tracking, fasting timer, expense management, task reminders, and a 14-day cleanse program with meal prep checklists.",
     tech: ["React Native", "Expo", "Node.js", "PostgreSQL"],
-    github: "https://github.com/cedricwtk/lunasol",
+    github: null,
     demo: null,
     demoLabel: "Live Demo",
     hoverImage: "/lunasol.png",
