@@ -12,14 +12,15 @@ const projects = [
     hoverImage: "/riftbound.png",
   },
   {
-    name: "Project Beta",
+    name: "LunaSol",
     description:
-      "A CLI tool that automates deployment workflows and integrates with popular CI/CD platforms.",
-    tech: ["Python", "Docker", "GitHub Actions"],
-    github: "https://github.com/yourusername/project-beta",
+      "A personal life companion Android app featuring calorie tracking, fasting timer, expense management, task reminders, and a 14-day cleanse program with meal prep checklists.",
+    tech: ["React Native", "Expo", "Node.js", "PostgreSQL"],
+    github: "https://github.com/cedricwtk/lunasol",
     demo: null,
     demoLabel: "Live Demo",
-    hoverImage: null,
+    hoverImage: "/lunasol.png",
+    apk: "http://5.161.90.215:3002/downloads/lunasol.apk",
   },
   {
     name: "Project Gamma",
@@ -67,7 +68,7 @@ export default function Projects() {
                 </span>
               ))}
             </div>
-            <div className="flex gap-4 text-sm">
+            <div className="flex gap-4 text-sm flex-wrap">
               {project.github && (
                 <a
                   href={project.github}
@@ -86,6 +87,16 @@ export default function Projects() {
                   className="text-cyan-400 hover:text-cyan-300 transition-colors"
                 >
                   {project.demoLabel} →
+                </a>
+              )}
+              {"apk" in project && project.apk && (
+                <a
+                  href={project.apk}
+                  download
+                  className="inline-flex items-center gap-1.5 bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 hover:bg-cyan-500/20 hover:text-cyan-300 px-3 py-1 rounded-lg transition-colors"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  Download APK
                 </a>
               )}
             </div>
